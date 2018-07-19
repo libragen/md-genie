@@ -1,5 +1,4 @@
 ## Chinese Movie Billboard
-{{.Stid}}
-{{range .MovieList}}
-- ![{{.Nm}}]({{.Img}}) SCORE:{{.Sc}}
-{{end}}
+|   Name          | 中文           | SCORE   |  AIR|
+|:-------------:|:-------------:| :-----:|:-----:|{{range .}}
+|{{.NmEn}} | {{.Nm}} |{{.Sc}}| {{.Rt}}|{{end}}
