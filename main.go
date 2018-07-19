@@ -26,7 +26,7 @@ func runGitCmds(){
 		[]string{"stash"},
 		[]string{"pull","origin","master"},
 		[]string{"stash","apply"},
-		[]string{"add","archives/*"},
+		[]string{"add","."},
 		[]string{"commit","-am",commitMsg},
 		[]string{"push","origin","master"},
 	}
