@@ -8,4 +8,5 @@ func TestMovie(t *testing.T) {
 	if err := FetchMaoyanApi(); err != nil {
 		t.Fatal(err)
 	}
+	redisClient.Close()
 }

@@ -5,7 +5,6 @@ import (
 	_ "strconv"
 	"time"
 
-	"fmt"
 	"github.com/mojocn/movie-board/util"
 )
 
@@ -41,5 +40,5 @@ func gitCommand(args ...string) {
 		println(err.Error())
 		return
 	}
-	fmt.Print(string(out))
+	util.DingLog("Git日志", string(out))
 }

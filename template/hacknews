@@ -1,0 +1,5 @@
+## Chinese Movie Billboard
+
+{{range .}}
+- [{{.TitleEn}}]({{.Url}})  `{{.TitleZh}}`
+{{end}}
