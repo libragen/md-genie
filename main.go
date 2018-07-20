@@ -10,7 +10,7 @@ import (
 
 func main() {
 	for {
-
+		util.SpiderHackNews()
 		util.ParseMarkdownHacknews()
 
 		util.FetchMaoyanApi()
