@@ -35,6 +35,5 @@ func LsArchivesMdFiles(dir string) (map[string][]string, error) {
 			movieItems = append(movieItems, fileName)
 		}
 	}
-	return map[string][]string{"Hack News List":newsItems,"Chinese Movie Board":movieItems}, nil
+	return map[string][]string{"Hack News List": newsItems, "Chinese Movie Board": movieItems}, nil
 }
-

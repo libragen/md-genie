@@ -9,5 +9,3 @@ func TestLsMdHacknews(t *testing.T) {
 		t.Error(err)
 	}
 }
-
-

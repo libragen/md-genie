@@ -69,7 +69,6 @@ func ParseMarkdownHacknews() error {
 	return err
 }
 
-
 func ParseReadmeMarkdown() error {
 	tmpl, err := template.ParseFiles("template/home") //解析模板文件
 	file, err := os.Create("README.md")
