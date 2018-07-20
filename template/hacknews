@@ -1,4 +1,4 @@
-## Chinese Movie Billboard
+## Hacknews List
 
 {{range .}}
 - [{{.TitleEn}}]({{.Url}})  `{{.TitleZh}}`

@@ -17,13 +17,11 @@ func TestParseMarkdown(t *testing.T) {
 }
 
 func TestParseMarkdownHacknews(t *testing.T) {
-
+	ParseMarkdownHacknews()
 }
 
 func TestFetchRedisDataHackNews(t *testing.T) {
-	if news,err := FetchRedisDataHackNews();err ==nil {
+	if news,err := fetchRedisDataHackNews();err ==nil {
 		t.Log(news)
 	}
-	redisClient.Close()
-
 }

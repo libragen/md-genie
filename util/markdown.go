@@ -39,7 +39,7 @@ func ParseMarkdown() error {
 	return err
 }
 
-func FetchRedisDataHackNews() ([]HacknewsItem, error) {
+func fetchRedisDataHackNews() ([]HacknewsItem, error) {
 	skey := time.Now().Format("hacknews-2006-01-02")
 	urls, err := redisClient.SMembers(skey).Result()
 	fmt.Println(urls)
@@ -47,11 +47,8 @@ func FetchRedisDataHackNews() ([]HacknewsItem, error) {
 	jsonStrings,err := redisClient.HMGet(hkey, urls ...).Result()
 
 	newsItems := []HacknewsItem{}
-	for idx, item := range jsonStrings {
-		fmt.Println(idx)
-		fmt.Println(item)
-
-		if string, ok := item.([]byte); ok {
+	for _, item := range jsonStrings {
+		if string, ok := item.(string); ok {
 			items := HacknewsItem{}
 			json.Unmarshal([]byte(string), &items)
 			newsItems = append(newsItems, items)
@@ -68,7 +65,7 @@ func ParseMarkdownHacknews()error{
 	file, err := os.Create(mdFile)
 	defer file.Close()
 
-	movies, err := FetchRedisData()
-	err = tmpl.Execute(file, movies) //执行模板的merger操作
+	newsItems, err := fetchRedisDataHackNews()
+	err = tmpl.Execute(file, newsItems) //执行模板的merger操作
 	return err
 }

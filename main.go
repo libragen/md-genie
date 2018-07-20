@@ -10,6 +10,9 @@ import (
 
 func main() {
 	for {
+
+		util.ParseMarkdownHacknews()
+
 		util.FetchMaoyanApi()
 		util.ParseMarkdown()
 		runGitCmds()
