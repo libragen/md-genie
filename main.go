@@ -41,5 +41,5 @@ func gitCommand(args ...string) {
 		println(err.Error())
 		return
 	}
-	util.DingLog("Git日志", string(out))
+	util.DingLog( string(out),"Git日志")
 }
