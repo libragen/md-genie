@@ -19,8 +19,8 @@
 
 
 ## Feature
-[x] Sendimg Logging Message To Dingding Talk
-[x] Golang Redis Package Feature
-[x] Xpath Selector By Golang
-[x] Golang Html/Template
-[x] Golang Executes Git Command
+- [x] Sendimg Logging Message To Dingding Talk
+- [x] Golang Redis Package Feature
+- [x] Xpath Selector By Golang
+- [x] Golang Html/Template
+- [x] Golang Executes Git Command
