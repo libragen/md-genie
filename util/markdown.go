@@ -42,7 +42,6 @@ func ParseMarkdown() error {
 func fetchRedisDataHackNews() ([]HacknewsItem, error) {
 	skey := time.Now().Format("hacknews-2006-01-02")
 	urls, err := redisClient.SMembers(skey).Result()
-	fmt.Println(urls)
 	hkey := "hacknews"
 	jsonStrings,err := redisClient.HMGet(hkey, urls ...).Result()
 
