@@ -5,10 +5,9 @@ import (
 	_ "strconv"
 	"time"
 
-	"github.com/mojocn/movie-board/util"
 	"fmt"
+	"github.com/mojocn/movie-board/util"
 )
-
 
 func main() {
 	for {
@@ -19,28 +18,24 @@ func main() {
 	}
 }
 
-
-func runGitCmds(){
+func runGitCmds() {
 	commitMsg := time.Now().Format(time.RFC3339)
 	cmds := [][]string{
 		[]string{"stash"},
-		[]string{"pull","origin","master"},
-		[]string{"stash","apply"},
-		[]string{"add","."},
-		[]string{"commit","-am",commitMsg},
-		[]string{"push","origin","master"},
+		[]string{"pull", "origin", "master"},
+		[]string{"stash", "apply"},
+		[]string{"add", "."},
+		[]string{"commit", "-am", commitMsg},
+		[]string{"push", "origin", "master"},
 	}
-	for _,arguments := range cmds {
+	for _, arguments := range cmds {
 		gitCommand(arguments...)
 	}
 }
 
-
-
-
 func gitCommand(args ...string) {
 	app := "git"
-	cmd := exec.Command(app,args ...)
+	cmd := exec.Command(app, args...)
 	out, err := cmd.Output()
 	if err != nil {
 		println(err.Error())

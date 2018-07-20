@@ -3,9 +3,9 @@ package util
 import "testing"
 
 func TestFetchRedisData(t *testing.T) {
-	if movies,err := FetchRedisData();err ==nil {
+	if movies, err := FetchRedisData(); err == nil {
 		t.Log(movies)
-	}else {
+	} else {
 		t.Error(err)
 	}
 }

@@ -5,7 +5,7 @@ import (
 )
 
 func TestMovie(t *testing.T) {
-	if err := FetchMaoyanApi();err != nil {
+	if err := FetchMaoyanApi(); err != nil {
 		t.Fatal(err)
 	}
 }

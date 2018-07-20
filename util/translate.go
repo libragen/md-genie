@@ -20,31 +20,30 @@ const appId = "11dfdb97abcbaed3"
 const appSecret = "onyaSnhdcYIZlDHQLWW6No0stUbs5Cxy"
 const host = "http://openapi.youdao.com/api"
 
-
-func TranslateCh2En(text string) string{
-	res := translateChinese2English(text,"zh-CHS","EN")
+func TranslateCh2En(text string) string {
+	res := translateChinese2English(text, "zh-CHS", "EN")
 	if len(res.Translation) > 0 {
 		return res.Translation[0]
-	}else {
+	} else {
 		return ""
 	}
 }
 func TranslateEn2Ch(text string) string {
-	res := translateChinese2English(text,"EN","zh-CHS")
+	res := translateChinese2English(text, "EN", "zh-CHS")
 	if len(res.Translation) > 0 {
 		return res.Translation[0]
-	}else {
+	} else {
 		return ""
 	}
 }
 
-func translateChinese2English(text,from,to string) (obj *responseStruct) {
+func translateChinese2English(text, from, to string) (obj *responseStruct) {
 	salt := strconv.Itoa(rand.Intn(999))
 	sign := generateSign(text, salt)
 	data := url.Values{
 		"q":      {text},
-		"to":   {to},
-		"from":     {from},
+		"to":     {to},
+		"from":   {from},
 		"appKey": {appId},
 		"salt":   {salt},
 		"sign":   {sign},
