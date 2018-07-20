@@ -25,3 +25,7 @@ func TestFetchRedisDataHackNews(t *testing.T) {
 		t.Log(news)
 	}
 }
+
+func TestParseReadme(t *testing.T) {
+	ParseReadmeMarkdown()
+}

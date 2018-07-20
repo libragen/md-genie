@@ -1,0 +1,8 @@
+## Golang Auto Markdown
+
+{{range $name, $list := .}}
+#### {{$name}}
+{{range $idx, $vv := $list}}
+- [{{$vv}}](https://github.com/mojocn/movie-board/blob/master/archives/{{$vv}})
+{{end}}
+{{end}}

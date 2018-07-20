@@ -13,6 +13,8 @@ func main() {
 
 		util.FetchMaoyanApi()
 		util.ParseMarkdown()
+
+		util.ParseReadmeMarkdown()
 		runGitCmds()
 		time.Sleep(3 * time.Hour)
 	}

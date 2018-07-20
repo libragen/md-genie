@@ -68,3 +68,14 @@ func ParseMarkdownHacknews() error {
 	err = tmpl.Execute(file, newsItems) //执行模板的merger操作
 	return err
 }
+
+
+func ParseReadmeMarkdown() error {
+	tmpl, err := template.ParseFiles("template/home") //解析模板文件
+	file, err := os.Create("README.md")
+	defer file.Close()
+
+	items, err := LsArchivesMdFiles("archives")
+	err = tmpl.Execute(file, items) //执行模板的merger操作
+	return err
+}
