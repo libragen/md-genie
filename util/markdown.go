@@ -43,7 +43,7 @@ func fetchRedisDataHackNews() ([]HacknewsItem, error) {
 	skey := time.Now().Format("hacknews-2006-01-02")
 	urls, err := redisClient.SMembers(skey).Result()
 	hkey := "hacknews"
-	jsonStrings,err := redisClient.HMGet(hkey, urls ...).Result()
+	jsonStrings, err := redisClient.HMGet(hkey, urls...).Result()
 
 	newsItems := []HacknewsItem{}
 	for _, item := range jsonStrings {
@@ -56,7 +56,7 @@ func fetchRedisDataHackNews() ([]HacknewsItem, error) {
 
 	return newsItems, err
 }
-func ParseMarkdownHacknews()error{
+func ParseMarkdownHacknews() error {
 	tmpl, err := template.ParseFiles("template/hacknews") //解析模板文件
 
 	mdFile := fmt.Sprintf("archives/hacknews_%s.md", time.Now().Format("2006-01-02"))

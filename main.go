@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/mojocn/movie-board/util"
 	"os/exec"
 	"time"
-	"github.com/mojocn/movie-board/util"
 )
 
 func main() {
@@ -41,5 +41,5 @@ func gitCommand(args ...string) {
 		println(err.Error())
 		return
 	}
-	util.DingLog( string(out),"Git日志")
+	util.DingLog(string(out), "Git日志")
 }

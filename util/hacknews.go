@@ -8,8 +8,6 @@ import (
 
 const hackNewsUrl = "http://news.ycombinator.com/news"
 
-
-
 type HacknewsItem struct {
 	TitleZh string `json:"titleZh"`
 	TitleEn string `json:"titleEn"`

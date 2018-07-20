@@ -21,7 +21,7 @@ func TestParseMarkdownHacknews(t *testing.T) {
 }
 
 func TestFetchRedisDataHackNews(t *testing.T) {
-	if news,err := fetchRedisDataHackNews();err ==nil {
+	if news, err := fetchRedisDataHackNews(); err == nil {
 		t.Log(news)
 	}
 }
