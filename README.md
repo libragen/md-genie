@@ -16,3 +16,11 @@
 
 - [hacknews_2018-07-21.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-21.md)
 
+
+
+## Feature
+[x] Sendimg Logging Message To Dingding Talk
+[x] Golang Redis Package Feature
+[x] Xpath Selector By Golang
+[x] Golang Html/Template
+[x] Golang Executes Git Command

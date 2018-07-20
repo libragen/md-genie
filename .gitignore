@@ -12,3 +12,6 @@ md-genie
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 .vscode
+.idea
+nohup.out
+go_build_main_go
