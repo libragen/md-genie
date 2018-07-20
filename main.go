@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/mojocn/movie-board/util"
+	"github.com/dejavuzhou/md-genie/util"
 	"os/exec"
 	"time"
 )
