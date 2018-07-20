@@ -1,5 +1,4 @@
 ## Hacknews List
 
 {{range .}}
-- [{{.TitleEn}}]({{.Url}})  `{{.TitleZh}}`
-{{end}}
+- [{{.TitleEn}}]({{.Url}})  `{{.TitleZh}}`{{end}}
