@@ -2,9 +2,7 @@ package main
 
 import (
 	"os/exec"
-	_ "strconv"
 	"time"
-
 	"github.com/mojocn/movie-board/util"
 )
 
@@ -16,7 +14,7 @@ func main() {
 		util.FetchMaoyanApi()
 		util.ParseMarkdown()
 		runGitCmds()
-		time.Sleep(6 * time.Hour)
+		time.Sleep(3 * time.Hour)
 	}
 }
 
