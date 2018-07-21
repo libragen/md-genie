@@ -39,16 +39,16 @@ func ParseMarkdown() error {
 	return err
 }
 
-func fetchRedisDataHackNews() ([]HacknewsItem, error) {
+func fetchRedisDataHackNews() ([]NewsItem, error) {
 	skey := time.Now().Format("hacknews-2006-01-02")
 	urls, err := redisClient.SMembers(skey).Result()
 	hkey := "hacknews"
 	jsonStrings, err := redisClient.HMGet(hkey, urls...).Result()
 
-	newsItems := []HacknewsItem{}
+	newsItems := []NewsItem{}
 	for _, item := range jsonStrings {
 		if string, ok := item.(string); ok {
-			items := HacknewsItem{}
+			items := NewsItem{}
 			json.Unmarshal([]byte(string), &items)
 			newsItems = append(newsItems, items)
 		}

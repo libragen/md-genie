@@ -8,7 +8,7 @@ import (
 
 const hackNewsUrl = "http://news.ycombinator.com/news"
 
-type HacknewsItem struct {
+type NewsItem struct {
 	TitleZh string `json:"titleZh"`
 	TitleEn string `json:"titleEn"`
 	Url     string `json:"url"`
@@ -33,7 +33,7 @@ func SpiderHackNews() error {
 			titleEn := s.Text()
 			titleZh := TranslateEn2Ch(titleEn)
 			timeString := time.Now().Format("2006-01-02")
-			newsItem := HacknewsItem{titleZh, titleEn, url, timeString}
+			newsItem := NewsItem{titleZh, titleEn, url, timeString}
 			if bytes, err := json.Marshal(newsItem); err == nil {
 				pipe.HSet(hkey, url, bytes)
 			}

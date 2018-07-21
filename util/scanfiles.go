@@ -29,10 +29,10 @@ func LsArchivesMdFiles(dir string) (map[string][]string, error) {
 	for _, f := range files {
 		fileName := f.Name()
 		if strings.Contains(fileName, "hacknews_") {
-			newsItems = append(newsItems, fileName)
+			newsItems = append([]string{fileName},newsItems ...)
 		}
 		if strings.Contains(fileName, "movie_") {
-			movieItems = append(movieItems, fileName)
+			movieItems = append([]string{fileName},movieItems ...)
 		}
 	}
 	return map[string][]string{"Hack News List": newsItems, "Chinese Movie Board": movieItems}, nil
