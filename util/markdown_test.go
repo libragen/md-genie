@@ -2,8 +2,8 @@ package util
 
 import "testing"
 
-func TestFetchRedisData(t *testing.T) {
-	if movies, err := FetchRedisData(); err == nil {
+func TestFetchMaoyanRedisData(t *testing.T) {
+	if movies, err := FetchMaoyanRedisData(); err == nil {
 		t.Log(movies)
 	} else {
 		t.Error(err)
@@ -11,9 +11,8 @@ func TestFetchRedisData(t *testing.T) {
 	redisClient.Close()
 }
 
-func TestParseMarkdown(t *testing.T) {
-	ParseMarkdown()
-	redisClient.Close()
+func TestParseMaoyanMarkdown(t *testing.T) {
+	ParseMaoyanMarkdown()
 }
 
 func TestParseMarkdownHacknews(t *testing.T) {

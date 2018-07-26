@@ -61,9 +61,9 @@ func FetchMaoyanApi() error {
 	json.NewDecoder(resp.Body).Decode(&obj)
 
 	_, err = redisClient.Pipelined(func(pipe redis.Pipeliner) error {
-		skey := time.Now().Format("movie-2006-01-02")
+		skey := time.Now().Format("maoyan:2006-01-02")
 		_, eerr := pipe.Expire(skey, time.Hour*24).Result()
-		key := "maoyan_movie"
+		key := "maoyan:movie"
 		for _, vv := range obj.MovieList {
 			field := strconv.Itoa(vv.ID)
 			pipe.SAdd(skey, vv.ID)

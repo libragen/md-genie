@@ -12,7 +12,7 @@ func main() {
 		util.ParseMarkdownHacknews()
 
 		util.FetchMaoyanApi()
-		util.ParseMarkdown()
+		util.ParseMaoyanMarkdown()
 
 		util.ParseReadmeMarkdown()
 		runGitCmds()

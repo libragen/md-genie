@@ -8,10 +8,10 @@ import (
 	"time"
 )
 
-func FetchRedisData() ([]Movie, error) {
-	skey := time.Now().Format("movie-2006-01-02")
+func FetchMaoyanRedisData() ([]Movie, error) {
+	skey := time.Now().Format("maoyan:2006-01-02")
 	ids, err := redisClient.SMembers(skey).Result()
-	hkey := "maoyan_movie"
+	hkey := "maoyan:movie"
 	jsonStrings, err := redisClient.HMGet(hkey, ids...).Result()
 
 	movies := []Movie{}
@@ -26,7 +26,7 @@ func FetchRedisData() ([]Movie, error) {
 	return movies, err
 }
 
-func ParseMarkdown() error {
+func ParseMaoyanMarkdown() error {
 	tmpl, err := template.ParseFiles("template/movies") //解析模板文件
 
 	mdFile := fmt.Sprintf("archives/movie_%s.md", time.Now().Format("2006-01-02"))
@@ -34,7 +34,7 @@ func ParseMarkdown() error {
 	file, err := os.Create(mdFile)
 	defer file.Close()
 
-	movies, err := FetchRedisData()
+	movies, err := FetchMaoyanRedisData()
 	err = tmpl.Execute(file, movies) //执行模板的merger操作
 	return err
 }
