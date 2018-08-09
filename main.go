@@ -16,7 +16,7 @@ func main() {
 		util.ParseMaoyanMarkdown()
 
 		util.ParseReadmeMarkdown()
-		go runGitCmds()
+		runGitCmds()
 		time.Sleep(6 * time.Hour)
 	}
 }
@@ -24,13 +24,13 @@ func main() {
 func runGitCmds() {
 	commitMsg := time.Now().Format(time.RFC3339)
 	cmds := [][]string{
-		[]string{"stash"},
-		[]string{"pull", "origin", "master"},
-		[]string{"stash", "apply"},
-		[]string{"add", "."},
-		[]string{"merge", "--strategy-option","ours"},
-		[]string{"commit", "-am", commitMsg},
-		[]string{"push", "origin", "master"},
+		{"stash"},
+		{"pull", "origin", "master"},
+		{"stash", "apply"},
+		{"add", "."},
+		{"merge", "--strategy-option","ours"},
+		{"commit", "-am", commitMsg},
+		{"push", "origin", "master"},
 	}
 	var outLog string
 
@@ -41,7 +41,7 @@ func runGitCmds() {
 
 	//util.DingLog(string(outLog), "Git日志")
 	subject := "Git日志:" + commitMsg
-	util.SendMsgToEmail(subject,outLog,"erikchau@me.com")
+	go util.SendMsgToEmail(subject,outLog,"erikchau@me.com")
 
 }
 
