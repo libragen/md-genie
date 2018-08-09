@@ -26,9 +26,7 @@ func runGitCmds() {
 	cmds := [][]string{
 		[]string{"stash"},
 		[]string{"pull", "origin", "master"},
-		[]string{"merge", "--strategy-option","ours"},
 		[]string{"stash", "apply"},
-		[]string{"merge", "--strategy-option","ours"},
 		[]string{"add", "."},
 		[]string{"merge", "--strategy-option","ours"},
 		[]string{"commit", "-am", commitMsg},
