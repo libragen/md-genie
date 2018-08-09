@@ -4,6 +4,7 @@ import (
 	"github.com/dejavuzhou/md-genie/util"
 	"os/exec"
 	"time"
+	"fmt"
 )
 
 func main() {
@@ -37,7 +38,7 @@ func runGitCmds() {
 
 	for _, arguments := range cmds {
 		out := gitCommand(arguments...)
-		outLog += out
+		outLog += fmt.Sprintf("<p>%s</p>",out)
 	}
 
 	//util.DingLog(string(outLog), "Git日志")
