@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func main1() {
 	for {
 		util.SpiderHackNews()
 		util.ParseMarkdownHacknews()
@@ -16,22 +16,22 @@ func main() {
 		util.ParseMaoyanMarkdown()
 
 		util.ParseReadmeMarkdown()
-		runGitCmds()
+		//runGitCmds()
 		time.Sleep(6 * time.Hour)
 	}
 }
 
-func runGitCmds() {
+func main() {
 	commitMsg := time.Now().Format(time.RFC3339)
 	cmds := [][]string{
 		[]string{"stash"},
 		[]string{"pull", "origin", "master"},
 		[]string{"stash", "apply"},
-		[]string{"merge", "--strategy-option ours"},
+		[]string{"merge", "--strategy-option","ours"},
 		[]string{"add", "."},
-		[]string{"merge", "--strategy-option ours"},
+		[]string{"merge", "--strategy-option","ours"},
 		[]string{"commit", "-am", commitMsg},
-		[]string{"merge", "--strategy-option ours"},
+		[]string{"merge", "--strategy-option","ours"},
 		[]string{"push", "origin", "master"},
 	}
 	var outLog string
@@ -43,7 +43,7 @@ func runGitCmds() {
 
 	//util.DingLog(string(outLog), "Git日志")
 	subject := "Git日志:" + commitMsg
-	util.SendMsgToEmail(subject,string(outLog),"erikchau@me.com")
+	util.SendMsgToEmail(subject,outLog,"erikchau@me.com")
 
 }
 
