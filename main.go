@@ -26,8 +26,11 @@ func runGitCmds() {
 		[]string{"stash"},
 		[]string{"pull", "origin", "master"},
 		[]string{"stash", "apply"},
+		[]string{"merge", "--strategy-option ours"},
 		[]string{"add", "."},
+		[]string{"merge", "--strategy-option ours"},
 		[]string{"commit", "-am", commitMsg},
+		[]string{"merge", "--strategy-option ours"},
 		[]string{"push", "origin", "master"},
 	}
 	var outLog string
