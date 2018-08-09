@@ -5,6 +5,35 @@
 
 - [movie_2018-08-09.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-09.md)
 
+<<<<<<< HEAD
+=======
+- [movie_2018-08-08.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-08.md)
+
+- [movie_2018-08-07.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-07.md)
+
+- [movie_2018-08-06.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-06.md)
+
+- [movie_2018-08-05.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-05.md)
+
+- [movie_2018-08-04.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-04.md)
+
+- [movie_2018-08-03.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-03.md)
+
+- [movie_2018-08-02.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-02.md)
+
+- [movie_2018-08-01.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-08-01.md)
+
+- [movie_2018-07-31.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-07-31.md)
+
+- [movie_2018-07-30.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-07-30.md)
+
+- [movie_2018-07-29.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-07-29.md)
+
+- [movie_2018-07-28.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-07-28.md)
+
+- [movie_2018-07-27.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-07-27.md)
+
+>>>>>>> 8f557de5e8113349aa45e5068b31ae1a90b9d256
 - [movie_2018-07-26.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-07-26.md)
 
 - [movie_2018-07-25.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-07-25.md)
@@ -26,6 +55,35 @@
 
 - [hacknews_2018-08-09.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-09.md)
 
+<<<<<<< HEAD
+=======
+- [hacknews_2018-08-08.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-08.md)
+
+- [hacknews_2018-08-07.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-07.md)
+
+- [hacknews_2018-08-06.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-06.md)
+
+- [hacknews_2018-08-05.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-05.md)
+
+- [hacknews_2018-08-04.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-04.md)
+
+- [hacknews_2018-08-03.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-03.md)
+
+- [hacknews_2018-08-02.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-02.md)
+
+- [hacknews_2018-08-01.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-08-01.md)
+
+- [hacknews_2018-07-31.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-31.md)
+
+- [hacknews_2018-07-30.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-30.md)
+
+- [hacknews_2018-07-29.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-29.md)
+
+- [hacknews_2018-07-28.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-28.md)
+
+- [hacknews_2018-07-27.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-27.md)
+
+>>>>>>> 8f557de5e8113349aa45e5068b31ae1a90b9d256
 - [hacknews_2018-07-26.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-26.md)
 
 - [hacknews_2018-07-25.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-07-25.md)
