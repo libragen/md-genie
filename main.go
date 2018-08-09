@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-func main1() {
+func main() {
 	for {
 		util.SpiderHackNews()
 		util.ParseMarkdownHacknews()
@@ -16,16 +16,17 @@ func main1() {
 		util.ParseMaoyanMarkdown()
 
 		util.ParseReadmeMarkdown()
-		//runGitCmds()
+		go runGitCmds()
 		time.Sleep(6 * time.Hour)
 	}
 }
 
-func main() {
+func runGitCmds() {
 	commitMsg := time.Now().Format(time.RFC3339)
 	cmds := [][]string{
 		[]string{"stash"},
 		[]string{"pull", "origin", "master"},
+		[]string{"merge", "--strategy-option","ours"},
 		[]string{"stash", "apply"},
 		[]string{"merge", "--strategy-option","ours"},
 		[]string{"add", "."},
