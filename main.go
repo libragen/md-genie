@@ -30,18 +30,25 @@ func runGitCmds() {
 		[]string{"commit", "-am", commitMsg},
 		[]string{"push", "origin", "master"},
 	}
+	var outLog string
+
 	for _, arguments := range cmds {
-		gitCommand(arguments...)
+		out := gitCommand(arguments...)
+		outLog += out
 	}
+
+	//util.DingLog(string(outLog), "Git日志")
+	subject := "Git日志:" + commitMsg
+	util.SendMsgToEmail(subject,string(outLog),"erikchau@me.com")
+
 }
 
-func gitCommand(args ...string) {
+func gitCommand(args ...string)string {
 	app := "git"
 	cmd := exec.Command(app, args...)
 	out, err := cmd.Output()
 	if err != nil {
-		println(err.Error())
-		return
+		return err.Error()
 	}
-	util.DingLog(string(out), "Git日志")
+	return string(out)
 }

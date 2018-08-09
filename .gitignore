@@ -15,3 +15,4 @@ md-genie
 .idea
 nohup.out
 go_build_main_go
+config/env.go
