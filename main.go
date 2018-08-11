@@ -1,10 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
 	"os/exec"
 	"time"
-	"fmt"
 )
 
 func main() {
@@ -16,12 +16,15 @@ func main() {
 		util.ParseMaoyanMarkdown()
 
 		util.ParseReadmeMarkdown()
-		runGitCmds()
+		mailTitle, mailBody := runGitCmds()
+
+		go util.SendMsgToEmail(mailTitle, mailBody, "erikchau@me.com")
 		time.Sleep(6 * time.Hour)
+
 	}
 }
 
-func runGitCmds() {
+func runGitCmds() (string, string) {
 	commitMsg := time.Now().Format(time.RFC3339)
 	cmds := [][]string{
 		{"stash"},
@@ -32,20 +35,18 @@ func runGitCmds() {
 		{"commit", "-am", commitMsg},
 		{"push", "origin", "master"},
 	}
-	var outLog string
+	var mailBody string
 
 	for _, arguments := range cmds {
 		out := gitCommand(arguments...)
-		outLog += fmt.Sprintf("<p>%s</p>",out)
+		mailBody += fmt.Sprintf("<p>%s</p>", out)
 	}
-
-	//util.DingLog(string(outLog), "Git日志")
-	subject := "Git日志:" + commitMsg
-	go util.SendMsgToEmail(subject,outLog,"erikchau@me.com")
-
+	//util.DingLog(string(mailBody), "Git日志")
+	mailTitle := "Git日志:" + commitMsg
+	return mailTitle, mailBody
 }
 
-func gitCommand(args ...string)string {
+func gitCommand(args ...string) string {
 	app := "git"
 	cmd := exec.Command(app, args...)
 	out, err := cmd.Output()

@@ -10,15 +10,13 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"github.com/dejavuzhou/md-genie/config"
 )
 
 /*
 	有道智云
 	文档页面  http://ai.youdao.com/docs/doc-trans-api.s#p01
 */
-const appId = "11dfdb97abcbaed3"
-const appSecret = "onyaSnhdcYIZlDHQLWW6No0stUbs5Cxy"
-const host = "http://openapi.youdao.com/api"
 
 func TranslateCh2En(text string) string {
 	res := translateChinese2English(text, "zh-CHS", "EN")
@@ -44,13 +42,13 @@ func translateChinese2English(text, from, to string) (obj *responseStruct) {
 		"q":      {text},
 		"to":     {to},
 		"from":   {from},
-		"appKey": {appId},
+		"appKey": {config.TRANSLATE_APP_ID},
 		"salt":   {salt},
 		"sign":   {sign},
 		"ext":    {"mp3"},
 		"voice":  {"0"},
 	}
-	resp, err := http.PostForm(host, data)
+	resp, err := http.PostForm(config.TRANSLATE_HOST, data)
 	if err != nil {
 		log.Print(err)
 	}
@@ -79,7 +77,7 @@ type responseStruct struct {
 }
 
 func generateSign(q, salt string) string {
-	temp := appId + q + salt + appSecret
+	temp := config.TRANSLATE_APP_ID + q + salt + config.TRANSLATE_APP_SECRET
 	h := md5.New()
 	io.WriteString(h, temp)
 	return hex.EncodeToString(h.Sum(nil))

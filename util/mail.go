@@ -2,8 +2,8 @@ package util
 
 import (
 	"github.com/dejavuzhou/md-genie/config"
-	"strings"
 	"net/smtp"
+	"strings"
 )
 
 type unencryptedAuth struct {
@@ -16,11 +16,8 @@ func (a unencryptedAuth) Start(server *smtp.ServerInfo) (string, []byte, error) 
 	return a.Auth.Start(&s)
 }
 
-
-
-
 func sendMail(user, password, host, to, subject, body, mailtype string) error {
-	auth := unencryptedAuth {
+	auth := unencryptedAuth{
 		smtp.PlainAuth(
 			"",
 			user,
@@ -35,13 +32,13 @@ func sendMail(user, password, host, to, subject, body, mailtype string) error {
 		content_type = "Content-Type: text/plain" + "; charset=UTF-8"
 	}
 
-	msg := []byte("To: " + to + "\r\nFrom: " + user + "\r\nSubject: " +subject+ "\r\n" + content_type + "\r\n\r\n" + body)
+	msg := []byte("To: " + to + "\r\nFrom: " + user + "\r\nSubject: " + subject + "\r\n" + content_type + "\r\n\r\n" + body)
 	send_to := strings.Split(to, ";")
-	err := smtp.SendMail(config.STMP_HOST + ":" + config.STMP_PORT, auth, user, send_to, msg)
+	err := smtp.SendMail(config.STMP_HOST+":"+config.STMP_PORT, auth, user, send_to, msg)
 	return err
 }
 
-func SendMsgToEmail(subject,msg,to string) error {
+func SendMsgToEmail(subject, msg, to string) error {
 
-	return sendMail(config.STMP_USER,config.STMP_PASSWORD,config.STMP_HOST,to,subject,msg,"html")
+	return sendMail(config.STMP_USER, config.STMP_PASSWORD, config.STMP_HOST, to, subject, msg, "html")
 }

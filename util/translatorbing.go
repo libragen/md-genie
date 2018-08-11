@@ -1,16 +1,16 @@
 package util
 
 import (
-	"strings"
-	"net/http"
-	"time"
-	"fmt"
-	"strconv"
-	"io/ioutil"
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"strconv"
+	"strings"
+	"time"
 )
 
-func Translate()  {
+func Translate() {
 	// Replace the subscriptionKey string value with your valid subscription key
 	const subscriptionKey = "<Subscription Key>"
 

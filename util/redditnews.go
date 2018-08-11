@@ -2,14 +2,11 @@ package util
 
 import (
 	"encoding/json"
-	"github.com/PuerkitoBio/goquery"
-	"time"
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"net/http"
+	"time"
 )
-
-
-
 
 func SpiderRedditProgramming() error {
 
