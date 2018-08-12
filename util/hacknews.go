@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const hackNewsUrl = "http://news.ycombinator.com/news"
+const hackNewsUrl = "https://news.ycombinator.com/news"
 
 type NewsItem struct {
 	TitleZh string `json:"titleZh"`

@@ -30,7 +30,7 @@ func TestParseReadme(t *testing.T) {
 }
 
 func TestParseEmailContent(t *testing.T) {
-	if err, emal := ParseEmailContent("logoogog"); err == nil {
+	if err, emal := ParseEmailContent([]string{"logoogog"}); err == nil {
 		t.Log(emal)
 	} else {
 		t.Error(err)
