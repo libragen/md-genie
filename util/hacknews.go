@@ -20,7 +20,7 @@ func SpiderHackNews() error {
 	// Instantiate default collector
 	doc, err := goquery.NewDocument(hackNewsUrl)
 	if err != nil {
-		return nil
+		return err
 	}
 	pipe := redisClient.Pipeline()
 	// Find the review items
