@@ -41,7 +41,7 @@ func ParseMaoyanMarkdown() error {
 }
 
 func fetchRedisDataHackNews() ([]NewsItem, error) {
-	skey := time.Now().Format("hacknews-2006-01-02")
+	skey := time.Now().Format("hacknews:2006-01-02")
 	urls, err := redisClient.SMembers(skey).Result()
 	hkey := "hacknews"
 	jsonStrings, err := redisClient.HMGet(hkey, urls...).Result()

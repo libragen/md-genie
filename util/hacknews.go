@@ -24,8 +24,8 @@ func SpiderHackNews() error {
 	}
 	pipe := redisClient.Pipeline()
 	// Find the review items
-	skey := time.Now().Format("hacknews-2006-01-02")
-	hkey := "hacknews"
+	skey := time.Now().Format("hacknews:2006-01-02")
+	hkey := time.Now().Format("hacknews:2006-01")
 	doc.Find("a.storylink").Each(func(i int, s *goquery.Selection) {
 		url, _ := s.Attr("href")
 		pipe.SAdd(skey, url)
@@ -40,7 +40,8 @@ func SpiderHackNews() error {
 			time.Sleep(time.Microsecond * 100)
 		}
 	})
-	pipe.Expire(skey, time.Hour*12)
+	pipe.Expire(skey, time.Hour*24)
+	pipe.Expire(hkey, time.Hour*24)
 	pipe.Exec()
 	return nil
 }
