@@ -2,8 +2,7 @@ package main
 import (
 
 	"github.com/dejavuzhou/md-genie/util"
-	"time"
-	"testing"
+		"testing"
 )
 
 /*
@@ -34,6 +33,5 @@ func Test_main(t *testing.T) {
 	}else {
 		util.SendMsgToEmail("parse email content hmtl error", err.Error(), "erikchau@me.com")
 	}
-	time.Sleep(6 * time.Hour)
 }
 
