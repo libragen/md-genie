@@ -33,7 +33,7 @@ func SpiderRedditProgramming() error {
 	}
 
 	fmt.Println(doc.Contents().Text())
-	pipe := redisClient.Pipeline()
+	pipe := RedisClient.Pipeline()
 	// Find the review items
 	skey := time.Now().Format("redditnews-2006-01-02")
 	hkey := "redditnews"
@@ -41,7 +41,7 @@ func SpiderRedditProgramming() error {
 		url, _ := s.Attr("href")
 		fmt.Print(url)
 		pipe.SAdd(skey, url)
-		if redisClient.HGet(hkey, url).Val() == "" {
+		if RedisClient.HGet(hkey, url).Val() == "" {
 			titleEn := s.Text()
 			titleZh := TranslateEn2Ch(titleEn)
 			timeString := time.Now().Format("2006-01-02")

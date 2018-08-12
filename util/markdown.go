@@ -11,9 +11,9 @@ import (
 
 func FetchMaoyanRedisData() ([]Movie, error) {
 	skey := time.Now().Format("maoyan:2006-01-02")
-	ids, err := redisClient.SMembers(skey).Result()
+	ids, err := RedisClient.SMembers(skey).Result()
 	hkey := "maoyan:movie"
-	jsonStrings, err := redisClient.HMGet(hkey, ids...).Result()
+	jsonStrings, err := RedisClient.HMGet(hkey, ids...).Result()
 
 	movies := []Movie{}
 	for _, item := range jsonStrings {
@@ -42,10 +42,10 @@ func ParseMaoyanMarkdown() error {
 
 func fetchRedisDataHackNews() ([]NewsItem, error) {
 	skey := time.Now().Format("hacknews:2006-01-02")
-	urls, err := redisClient.SMembers(skey).Result()
+	urls, err := RedisClient.SMembers(skey).Result()
 	hkey := time.Now().Format("hacknews:2006-01")
 
-	jsonStrings, err := redisClient.HMGet(hkey, urls...).Result()
+	jsonStrings, err := RedisClient.HMGet(hkey, urls...).Result()
 
 	newsItems := []NewsItem{}
 	for _, item := range jsonStrings {
@@ -82,7 +82,7 @@ func ParseEmailContent(logs []string) (error, string) {
 	var buf = new(bytes.Buffer)
 	data := struct {
 		List []NewsItem
-		Logs  []string
+		Logs []string
 	}{newsItems, logs}
 	err = tmpl.Execute(buf, data)
 	if err != nil {

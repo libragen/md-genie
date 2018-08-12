@@ -24,7 +24,6 @@ func main() {
 
 		util.ParseReadmeMarkdown()
 		mailTitle, gitlogs := runGitCmds()
-
 		if err, mailBody := util.ParseEmailContent(gitlogs); err == nil {
 			util.SendMsgToEmail(mailTitle, mailBody, "erikchau@me.com")
 		} else {
@@ -50,7 +49,7 @@ func runGitCmds() (string, []string) {
 
 	for _, arguments := range cmds {
 		out := gitCommand(arguments...)
-		gitlogs = append(gitlogs,out)
+		gitlogs = append(gitlogs, out)
 	}
 	//util.DingLog(string(gitlogs), "Git日志")
 	mailTitle := "Git日志:" + commitMsg

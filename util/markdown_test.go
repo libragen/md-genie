@@ -8,7 +8,7 @@ func TestFetchMaoyanRedisData(t *testing.T) {
 	} else {
 		t.Error(err)
 	}
-	redisClient.Close()
+	RedisClient.Close()
 }
 
 func TestParseMaoyanMarkdown(t *testing.T) {
