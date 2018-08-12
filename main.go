@@ -9,25 +9,25 @@ import (
 func main() {
 	for {
 		if err := util.SpiderHackNews(); err != nil {
-			util.SendMsgToEmail("spider hack news error", err.Error(), "erikchau@me.com")
+			util.SendMsgToEmail("spider hack news error", err.Error())
 		}
 		if err := util.ParseMarkdownHacknews(); err != nil {
-			util.SendMsgToEmail("pasrse hack news markdown error", err.Error(), "erikchau@me.com")
+			util.SendMsgToEmail("pasrse hack news markdown error", err.Error())
 		}
 
 		if err := util.FetchMaoyanApi(); err != nil {
-			util.SendMsgToEmail("fetch maoyan api error", err.Error(), "erikchau@me.com")
+			util.SendMsgToEmail("fetch maoyan api error", err.Error())
 		}
 		if err := util.ParseMaoyanMarkdown(); err != nil {
-			util.SendMsgToEmail("parse maoyan movie markdown error", err.Error(), "erikchau@me.com")
+			util.SendMsgToEmail("parse maoyan movie markdown error", err.Error())
 		}
 
 		util.ParseReadmeMarkdown()
 		mailTitle, gitlogs := runGitCmds()
 		if err, mailBody := util.ParseEmailContent(gitlogs); err == nil {
-			util.SendMsgToEmail(mailTitle, mailBody, "erikchau@me.com")
+			util.SendMsgToEmail(mailTitle, mailBody)
 		} else {
-			util.SendMsgToEmail("parse email content hmtl error", err.Error(), "erikchau@me.com")
+			util.SendMsgToEmail("parse email content hmtl error", err.Error())
 		}
 		time.Sleep(6 * time.Hour)
 

@@ -1,10 +1,10 @@
 package util
 
 import (
+	"fmt"
 	"github.com/dejavuzhou/md-genie/config"
 	"net/smtp"
 	"strings"
-	"fmt"
 )
 
 type unencryptedAuth struct {
@@ -23,7 +23,7 @@ func sendMail(user, password, host, to, subject, body, mailtype string) error {
 			"",
 			user,
 			password,
-			config.STMP_HOST,
+			host,
 		),
 	}
 	var content_type string
@@ -39,8 +39,8 @@ func sendMail(user, password, host, to, subject, body, mailtype string) error {
 	return err
 }
 
-func SendMsgToEmail(subject, msg, to string) error {
-	err := sendMail(config.STMP_USER, config.STMP_PASSWORD, config.STMP_HOST, to, subject, msg, "html")
+func SendMsgToEmail(subject, msg string) error {
+	err := sendMail(config.STMP_USER, config.STMP_PASSWORD, config.STMP_HOST, config.STMP_RECEIVER, subject, msg, "html")
 	if err != nil {
 		fmt.Println(err)
 	}
