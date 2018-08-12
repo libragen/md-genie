@@ -28,3 +28,13 @@ func TestFetchRedisDataHackNews(t *testing.T) {
 func TestParseReadme(t *testing.T) {
 	ParseReadmeMarkdown()
 }
+
+
+func TestParseEmailContent(t *testing.T) {
+	if err,emal := ParseEmailContent("logoogog"); err == nil {
+		t.Log(emal)
+	}else {
+		t.Error(err)
+	}
+
+}

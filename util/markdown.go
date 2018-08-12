@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"os"
 	"time"
+	"bytes"
 )
 
 func FetchMaoyanRedisData() ([]Movie, error) {
@@ -67,6 +68,26 @@ func ParseMarkdownHacknews() error {
 	newsItems, err := fetchRedisDataHackNews()
 	err = tmpl.Execute(file, newsItems) //执行模板的merger操作
 	return err
+}
+
+func ParseEmailContent(log string) (error, string) {
+	tmpl, err := template.ParseFiles("template/mailNews.html") //解析模板文件
+	if err != nil {
+		return err,""
+	}
+
+	newsItems, err := fetchRedisDataHackNews()
+
+	var buf = new(bytes.Buffer)
+	data := struct {
+		List []NewsItem
+		Log string
+	}{newsItems,log}
+	err = tmpl.Execute(buf,data)
+	if err != nil {
+		return err ,""
+	}
+	return nil, buf.String()
 }
 
 func ParseReadmeMarkdown() error {

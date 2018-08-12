@@ -9,16 +9,28 @@ import (
 
 func main() {
 	for {
-		util.SpiderHackNews()
-		util.ParseMarkdownHacknews()
+		if err := util.SpiderHackNews();err != nil {
+			util.SendMsgToEmail("spider hack news error", err.Error(), "erikchau@me.com")
+		}
+		if err := util.ParseMarkdownHacknews();err != nil {
+			util.SendMsgToEmail("pasrse hack news markdown error", err.Error(), "erikchau@me.com")
+		}
 
-		util.FetchMaoyanApi()
-		util.ParseMaoyanMarkdown()
+		if err := util.FetchMaoyanApi();err != nil {
+			util.SendMsgToEmail("fetch maoyan api error", err.Error(), "erikchau@me.com")
+		}
+		if err := util.ParseMaoyanMarkdown();err != nil {
+			util.SendMsgToEmail("parse maoyan movie markdown error", err.Error(), "erikchau@me.com")
+		}
 
 		util.ParseReadmeMarkdown()
-		mailTitle, mailBody := runGitCmds()
+		mailTitle, gitlog := runGitCmds()
 
-		go util.SendMsgToEmail(mailTitle, mailBody, "erikchau@me.com")
+		if err,mailBody := util.ParseEmailContent(gitlog);err == nil {
+			util.SendMsgToEmail(mailTitle, mailBody, "erikchau@me.com")
+		}else {
+			util.SendMsgToEmail("parse email content hmtl error", err.Error(), "erikchau@me.com")
+		}
 		time.Sleep(6 * time.Hour)
 
 	}
@@ -35,15 +47,15 @@ func runGitCmds() (string, string) {
 		{"commit", "-am", commitMsg},
 		{"push", "origin", "master"},
 	}
-	var mailBody string
+	var gitlogs string
 
 	for _, arguments := range cmds {
 		out := gitCommand(arguments...)
-		mailBody += fmt.Sprintf("<p>%s</p>", out)
+		gitlogs += fmt.Sprintf("<p>%s</p>", out)
 	}
-	//util.DingLog(string(mailBody), "Git日志")
+	//util.DingLog(string(gitlogs), "Git日志")
 	mailTitle := "Git日志:" + commitMsg
-	return mailTitle, mailBody
+	return mailTitle, gitlogs
 }
 
 func gitCommand(args ...string) string {

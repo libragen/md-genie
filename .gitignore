@@ -16,3 +16,4 @@ md-genie
 nohup.out
 go_build_main_go
 config/env.go
+Test*
