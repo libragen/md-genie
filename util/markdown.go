@@ -1,12 +1,12 @@
 package util
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"html/template"
 	"os"
 	"time"
-	"bytes"
 )
 
 func FetchMaoyanRedisData() ([]Movie, error) {
@@ -74,7 +74,7 @@ func ParseMarkdownHacknews() error {
 func ParseEmailContent(log string) (error, string) {
 	tmpl, err := template.ParseFiles("template/mailNews.html") //解析模板文件
 	if err != nil {
-		return err,""
+		return err, ""
 	}
 
 	newsItems, err := fetchRedisDataHackNews()
@@ -82,11 +82,11 @@ func ParseEmailContent(log string) (error, string) {
 	var buf = new(bytes.Buffer)
 	data := struct {
 		List []NewsItem
-		Log string
-	}{newsItems,log}
-	err = tmpl.Execute(buf,data)
+		Log  string
+	}{newsItems, log}
+	err = tmpl.Execute(buf, data)
 	if err != nil {
-		return err ,""
+		return err, ""
 	}
 	return nil, buf.String()
 }

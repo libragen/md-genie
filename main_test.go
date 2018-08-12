@@ -1,8 +1,8 @@
 package main
-import (
 
+import (
 	"github.com/dejavuzhou/md-genie/util"
-		"testing"
+	"testing"
 )
 
 /*
@@ -11,27 +11,26 @@ import (
 */
 func Test_main(t *testing.T) {
 
-	if err := util.SpiderHackNews();err != nil {
+	if err := util.SpiderHackNews(); err != nil {
 		util.SendMsgToEmail("spider hack news error", err.Error(), "erikchau@me.com")
 	}
-	if err := util.ParseMarkdownHacknews();err != nil {
+	if err := util.ParseMarkdownHacknews(); err != nil {
 		util.SendMsgToEmail("pasrse hack news markdown error", err.Error(), "erikchau@me.com")
 	}
 
-	if err := util.FetchMaoyanApi();err != nil {
+	if err := util.FetchMaoyanApi(); err != nil {
 		util.SendMsgToEmail("fetch maoyan api error", err.Error(), "erikchau@me.com")
 	}
-	if err := util.ParseMaoyanMarkdown();err != nil {
+	if err := util.ParseMaoyanMarkdown(); err != nil {
 		util.SendMsgToEmail("parse maoyan movie markdown error", err.Error(), "erikchau@me.com")
 	}
 
 	util.ParseReadmeMarkdown()
 	mailTitle, gitlog := runGitCmds()
 
-	if err,mailBody := util.ParseEmailContent(gitlog);err == nil {
+	if err, mailBody := util.ParseEmailContent(gitlog); err == nil {
 		util.SendMsgToEmail(mailTitle, mailBody, "erikchau@me.com")
-	}else {
+	} else {
 		util.SendMsgToEmail("parse email content hmtl error", err.Error(), "erikchau@me.com")
 	}
 }
-

@@ -29,11 +29,10 @@ func TestParseReadme(t *testing.T) {
 	ParseReadmeMarkdown()
 }
 
-
 func TestParseEmailContent(t *testing.T) {
-	if err,emal := ParseEmailContent("logoogog"); err == nil {
+	if err, emal := ParseEmailContent("logoogog"); err == nil {
 		t.Log(emal)
-	}else {
+	} else {
 		t.Error(err)
 	}
 
