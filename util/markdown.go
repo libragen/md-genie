@@ -71,7 +71,7 @@ func ParseMarkdownHacknews() error {
 	return err
 }
 
-func ParseEmailContent(log string) (error, string) {
+func ParseEmailContent(logs []string) (error, string) {
 	tmpl, err := template.ParseFiles("template/mailNews.html") //解析模板文件
 	if err != nil {
 		return err, ""
@@ -82,8 +82,8 @@ func ParseEmailContent(log string) (error, string) {
 	var buf = new(bytes.Buffer)
 	data := struct {
 		List []NewsItem
-		Log  string
-	}{newsItems, log}
+		Logs  []string
+	}{newsItems, logs}
 	err = tmpl.Execute(buf, data)
 	if err != nil {
 		return err, ""

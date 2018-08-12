@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
 	"os/exec"
 	"time"
@@ -24,9 +23,9 @@ func main() {
 		}
 
 		util.ParseReadmeMarkdown()
-		mailTitle, gitlog := runGitCmds()
+		mailTitle, gitlogs := runGitCmds()
 
-		if err, mailBody := util.ParseEmailContent(gitlog); err == nil {
+		if err, mailBody := util.ParseEmailContent(gitlogs); err == nil {
 			util.SendMsgToEmail(mailTitle, mailBody, "erikchau@me.com")
 		} else {
 			util.SendMsgToEmail("parse email content hmtl error", err.Error(), "erikchau@me.com")
@@ -36,7 +35,7 @@ func main() {
 	}
 }
 
-func runGitCmds() (string, string) {
+func runGitCmds() (string, []string) {
 	commitMsg := time.Now().Format(time.RFC3339)
 	cmds := [][]string{
 		{"stash"},
@@ -47,11 +46,11 @@ func runGitCmds() (string, string) {
 		{"commit", "-am", commitMsg},
 		{"push", "origin", "master"},
 	}
-	var gitlogs string
+	var gitlogs []string
 
 	for _, arguments := range cmds {
 		out := gitCommand(arguments...)
-		gitlogs += fmt.Sprintf("<p>%s</p>", out)
+		gitlogs = append(gitlogs,out)
 	}
 	//util.DingLog(string(gitlogs), "Git日志")
 	mailTitle := "Git日志:" + commitMsg
