@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
 	"os/exec"
 	"time"
@@ -9,17 +10,17 @@ import (
 func main() {
 	for {
 		if err := util.SpiderHackNews(); err != nil {
-			util.SendMsgToEmail("spider hack news error", err.Error())
+			fmt.Println(err)
 		}
 		if err := util.ParseMarkdownHacknews(); err != nil {
-			util.SendMsgToEmail("pasrse hack news markdown error", err.Error())
+			fmt.Println(err)
 		}
 
 		if err := util.FetchMaoyanApi(); err != nil {
-			util.SendMsgToEmail("fetch maoyan api error", err.Error())
+			fmt.Println(err)
 		}
 		if err := util.ParseMaoyanMarkdown(); err != nil {
-			util.SendMsgToEmail("parse maoyan movie markdown error", err.Error())
+			fmt.Println(err)
 		}
 
 		util.ParseReadmeMarkdown()
@@ -27,10 +28,9 @@ func main() {
 		if err, mailBody := util.ParseEmailContent(gitlogs); err == nil {
 			util.SendMsgToEmail(mailTitle, mailBody)
 		} else {
-			util.SendMsgToEmail("parse email content hmtl error", err.Error())
+			fmt.Println(err)
 		}
 		time.Sleep(6 * time.Hour)
-
 	}
 }
 
