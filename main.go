@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
-	"math/rand"
 	"os/exec"
 	"time"
 )
@@ -35,15 +34,6 @@ func main() {
 	}
 }
 
-var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-
-func randSeq(n int) string {
-	b := make([]rune, n)
-	for i := range b {
-		b[i] = letters[rand.Intn(len(letters))]
-	}
-	return string(b)
-}
 func runGitCmds() (string, []string) {
 	commitMsg := time.Now().Format("2006年01月02日15点04分")
 	cmds := [][]string{
@@ -62,7 +52,7 @@ func runGitCmds() (string, []string) {
 		gitlogs = append(gitlogs, out)
 	}
 	//util.DingLog(string(gitlogs), "Git日志")
-	mailTitle := "每日新闻" + commitMsg + randSeq(12)
+	mailTitle := "每日新闻" + commitMsg
 	return mailTitle, gitlogs
 }
 
