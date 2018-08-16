@@ -1,23 +1,27 @@
 package main
 
 import (
+	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
 	"log"
 	"time"
 )
 
-var cmds = []util.Cmd{
-	{"git", []string{"stash"}},
-	{"git", []string{"pull", "origin", "master"}},
-	{"git", []string{"stash", "apply"}},
-	{"git", []string{"add", "."}},
-	{"git", []string{"stash"}},
-	{"git", []string{"status"}},
-	{"git", []string{"commit", "-am", time.Now().Format(time.RFC3339)}},
-	{"ps", []string{"ps", "-ef", "|", "grep", "md-genie"}},
-	{"netstat", []string{"-lntp"}},
-	{"free", []string{"-m"}},
-	{"ps", []string{"aux"}},
+func createCmds() []util.Cmd {
+	cmds := []util.Cmd{
+		{"git", []string{"stash"}},
+		{"git", []string{"pull", "origin", "master"}},
+		{"git", []string{"stash", "apply"}},
+		{"git", []string{"add", "."}},
+		{"git", []string{"stash"}},
+		{"git", []string{"status"}},
+		{"git", []string{"commit", "-am", fmt.Sprintf("'%s'", time.Now().Format(time.RFC3339))}},
+		{"ps", []string{"ps", "-ef", "|", "grep", "'md-genie'"}},
+		{"netstat", []string{"-lntp"}},
+		{"free", []string{"-m"}},
+		{"ps", []string{"aux"}},
+	}
+	return cmds
 }
 
 func main() {
@@ -37,7 +41,7 @@ func main() {
 		}
 		util.ParseReadmeMarkdown()
 
-		gitlogs, err := util.RunCmds(cmds)
+		gitlogs, err := util.RunCmds(createCmds())
 		if err != nil {
 			log.Fatal(err)
 		}
