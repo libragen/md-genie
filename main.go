@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
 	"log"
 	"time"
@@ -14,7 +13,7 @@ func createCmds() []util.Cmd {
 		{"git", []string{"stash", "apply"}},
 		{"git", []string{"add", "."}},
 		{"git", []string{"status"}},
-		{"git", []string{"commit", "-am", fmt.Sprintf(`"%s"`, time.Now().Format(time.RFC3339))}},
+		{"git", []string{"commit", "-am", time.Now().Format(time.RFC3339)}},
 		{"git", []string{"status"}},
 		{"git", []string{"push", "origin", "master"}},
 		{"netstat", []string{"-lntp"}},
