@@ -3,9 +3,21 @@ package main
 import (
 	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
-	"os/exec"
 	"time"
 )
+
+var cmds = []util.Cmd{
+	{"git", []string{"stash"}},
+	{"git", []string{"pull", "origin", "master"}},
+	{"git", []string{"stash", "apply"}},
+	{"git", []string{"add", "."}},
+	{"git", []string{"stash"}},
+	{"git", []string{"commit", "-am", time.Now().Format(time.RFC3339)}},
+	{"ps", []string{"ps", "-ef", "|", "grep", "md-genie"}},
+	{"netstat", []string{"-lntp"}},
+	{"free", []string{"-"}},
+	{"ps", []string{"aux"}},
+}
 
 func main() {
 	for {
@@ -22,46 +34,18 @@ func main() {
 		if err := util.ParseMaoyanMarkdown(); err != nil {
 			fmt.Println(err)
 		}
-
 		util.ParseReadmeMarkdown()
-		mailTitle, gitlogs := runGitCmds()
+
+		gitlogs, err := util.RunCmds(cmds)
+		if err != nil {
+			fmt.Println(err)
+		}
 		if err, mailBody := util.ParseEmailContent(gitlogs); err == nil {
+			mailTitle := "md-genie+hacknews日志:" + time.Now().Format(time.RFC3339)
 			util.SendMsgToEmail(mailTitle, mailBody)
 		} else {
 			fmt.Println(err)
 		}
 		time.Sleep(6 * time.Hour)
 	}
-}
-
-func runGitCmds() (string, []string) {
-	commitMsg := time.Now().Format("2006年01月02日15点04分")
-	cmds := [][]string{
-		{"stash"},
-		{"pull", "origin", "master"},
-		{"stash", "apply"},
-		{"add", "."},
-		//{"merge", "--strategy-option","ours"},
-		{"commit", "-am", commitMsg},
-		{"push", "origin", "master"},
-	}
-	var gitlogs []string
-
-	for _, arguments := range cmds {
-		out := gitCommand(arguments...)
-		gitlogs = append(gitlogs, out)
-	}
-	//util.DingLog(string(gitlogs), "Git日志")
-	mailTitle := "每日新闻" + commitMsg
-	return mailTitle, gitlogs
-}
-
-func gitCommand(args ...string) string {
-	app := "git"
-	cmd := exec.Command(app, args...)
-	out, err := cmd.Output()
-	if err != nil {
-		return err.Error()
-	}
-	return string(out)
 }
