@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/dejavuzhou/md-genie/util"
+	"log"
 	"time"
 )
 
@@ -22,29 +22,29 @@ var cmds = []util.Cmd{
 func main() {
 	for {
 		if err := util.SpiderHackNews(); err != nil {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 		if err := util.ParseMarkdownHacknews(); err != nil {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 
 		if err := util.FetchMaoyanApi(); err != nil {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 		if err := util.ParseMaoyanMarkdown(); err != nil {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 		util.ParseReadmeMarkdown()
 
 		gitlogs, err := util.RunCmds(cmds)
 		if err != nil {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 		if err, mailBody := util.ParseEmailContent(gitlogs); err == nil {
 			mailTitle := "md-genie+hacknews日志:" + time.Now().Format(time.RFC3339)
 			util.SendMsgToEmail(mailTitle, mailBody)
 		} else {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 		time.Sleep(6 * time.Hour)
 	}
