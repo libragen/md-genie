@@ -15,7 +15,7 @@ func TestRunCmds(t *testing.T) {
 		Cmd{"git", []string{"commit", "-am", time.Now().Format("2006-01-02T15:04:05")}},
 		Cmd{"ps", []string{"ps", "-ef", "|", "grep", "md-genie"}},
 		Cmd{"netstat", []string{"-lntp"}},
-		Cmd{"free", []string{"-"}},
+		Cmd{"free", []string{"-m"}},
 		Cmd{"ps", []string{"aux"}},
 	}
 	if logs, err := RunCmds(cmds); err != nil {

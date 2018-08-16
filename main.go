@@ -15,7 +15,7 @@ var cmds = []util.Cmd{
 	{"git", []string{"commit", "-am", time.Now().Format(time.RFC3339)}},
 	{"ps", []string{"ps", "-ef", "|", "grep", "md-genie"}},
 	{"netstat", []string{"-lntp"}},
-	{"free", []string{"-"}},
+	{"free", []string{"-m"}},
 	{"ps", []string{"aux"}},
 }
 
