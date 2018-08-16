@@ -2,6 +2,7 @@ package util
 
 import (
 	"errors"
+	"log"
 	"os/exec"
 	"strconv"
 )
@@ -17,7 +18,7 @@ func RunCmds(cmds []Cmd) (logs []string, err error) {
 		out, err := cmd.Output()
 		if err != nil {
 			err = errors.New(strconv.Itoa(idx) + "行command错误")
-			return nil, err
+			log.Println(err)
 		}
 		logs = append(logs, string(out))
 	}
