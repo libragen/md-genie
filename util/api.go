@@ -2,6 +2,7 @@ package util
 
 import (
 	"encoding/json"
+	"github.com/dejavuzhou/md-genie/config"
 	"github.com/go-redis/redis"
 	"net/http"
 	"strconv"
@@ -12,9 +13,9 @@ var RedisClient *redis.Client
 
 func init() {
 	RedisClient = redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
+		Addr:     config.REDIS_ADDR,
+		Password: config.REDIS_PASSWORD, // no password set
+		DB:       config.REDIS_DB_IDX,   // use default DB
 	})
 
 	// pong, err := RedisClient.Ping().Result()

@@ -3,6 +3,7 @@ package util
 import (
 	"fmt"
 	"os/exec"
+	"strings"
 )
 
 type Cmd struct {
@@ -20,7 +21,9 @@ func RunCmds(cmds []Cmd) (logs []string, err error) {
 		} else {
 			logString = string(out)
 		}
-		logs = append(logs, logString)
+		if strings.TrimSpace(logString) != "" {
+			logs = append(logs, logString)
+		}
 	}
 	return logs, nil
 }
