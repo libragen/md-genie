@@ -1,10 +1,8 @@
 package util
 
 import (
-	"errors"
-	"log"
+	"fmt"
 	"os/exec"
-	"strconv"
 )
 
 type Cmd struct {
@@ -13,14 +11,16 @@ type Cmd struct {
 }
 
 func RunCmds(cmds []Cmd) (logs []string, err error) {
-	for idx, command := range cmds {
+	for _, command := range cmds {
 		cmd := exec.Command(command.Name, command.Args...)
 		out, err := cmd.Output()
+		var logString string
 		if err != nil {
-			err = errors.New(strconv.Itoa(idx) + "行command错误")
-			log.Println(err)
+			logString = fmt.Sprint("错误:", command)
+		} else {
+			logString = string(out)
 		}
-		logs = append(logs, string(out))
+		logs = append(logs, logString)
 	}
 	return logs, nil
 }
