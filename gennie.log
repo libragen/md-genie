@@ -6,3 +6,20 @@
 5.7.14 your web browser and then try again.
 5.7.14  Learn more at
 5.7.14  https://support.google.com/mail/answer/78754 z69-v6sm481002wmz.18 - gsmtp
+2018/09/17 05:37:31 Post http://openapi.youdao.com/api: EOF
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x40 pc=0x76b9a0]
+
+goroutine 1 [running]:
+github.com/dejavuzhou/md-genie/util.translateChinese2English(0xc000297280, 0x31, 0x83f629, 0x2, 0x841dbe, 0x6, 0x0)
+	/Golang/src/github.com/dejavuzhou/md-genie/util/translate.go:55 +0x680
+github.com/dejavuzhou/md-genie/util.TranslateEn2Ch(0xc000297280, 0x31, 0x31, 0xc000052770)
+	/Golang/src/github.com/dejavuzhou/md-genie/util/translate.go:30 +0x63
+github.com/dejavuzhou/md-genie/util.SpiderHackNews.func1(0x3, 0xc0002179e0)
+	/Golang/src/github.com/dejavuzhou/md-genie/util/hacknews.go:34 +0x1f6
+github.com/PuerkitoBio/goquery.(*Selection).Each(0xc000216840, 0xc0000b3e58, 0xb)
+	/Golang/src/github.com/PuerkitoBio/goquery/iteration.go:10 +0x53
+github.com/dejavuzhou/md-genie/util.SpiderHackNews(0x13a52453c000, 0x2c)
+	/Golang/src/github.com/dejavuzhou/md-genie/util/hacknews.go:29 +0x1c1
+main.main()
+	/Golang/src/github.com/dejavuzhou/md-genie/main.go:43 +0x49
