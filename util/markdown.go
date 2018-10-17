@@ -3,6 +3,7 @@ package util
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"html/template"
 	"os"
@@ -43,10 +44,15 @@ func ParseMaoyanMarkdown() error {
 func fetchRedisDataHackNews() ([]NewsItem, error) {
 	skey := time.Now().Format("hacknews:2006-01-02")
 	urls, err := RedisClient.SMembers(skey).Result()
+	if err != nil || len(urls) == 0 {
+		return nil, errors.New("没有新闻 smembers")
+	}
 	hkey := time.Now().Format("hacknews:2006-01")
 
 	jsonStrings, err := RedisClient.HMGet(hkey, urls...).Result()
-
+	if err != nil || len(jsonStrings) == 0 {
+		return nil, errors.New("没有新闻 hmget")
+	}
 	newsItems := []NewsItem{}
 	for _, item := range jsonStrings {
 		if string, ok := item.(string); ok {
