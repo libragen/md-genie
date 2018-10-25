@@ -3,6 +3,8 @@
 
 #### Chinese Movie Board
 
+- [movie_2018-10-25.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-10-25.md)
+
 - [movie_2018-10-24.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-10-24.md)
 
 - [movie_2018-10-23.md](https://github.com/mojocn/movie-board/blob/master/archives/movie_2018-10-23.md)
@@ -193,6 +195,8 @@
 
 
 #### Hack News List
+
+- [hacknews_2018-10-25.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-10-25.md)
 
 - [hacknews_2018-10-24.md](https://github.com/mojocn/movie-board/blob/master/archives/hacknews_2018-10-24.md)
 
